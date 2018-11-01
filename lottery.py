@@ -35,7 +35,8 @@ class Lottery:
         return len(matches)
 
     def generate_results(self):
-        pool = multiprocessing.Pool(processes = multiprocessing.cpu_count()-1)
+        num_processes = max(1, multiprocessing.cpu_count()-1)
+        pool = multiprocessing.Pool(processes = num_processes)
         # generate an entry for each player
         # returns a list containing number of matches for each entry
         entries = pool.map(
